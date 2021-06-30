@@ -1,69 +1,38 @@
 import React from 'react'
-
-// class Categories extends React.Component {
-//
-//   state = {
-//     activeItem: 1
-//   }
-//
-//   onSelectItem = index => {
-//     this.setState({
-//       activeItem: index
-//     })
-//   }
-//
-//   render() {
-//     const {items, onClick} = this.props
-//     console.log(this.state)
-//     return (
-//     <div className="categories">
-//       <ul>
-//         <li>Все</li>
-//         {
-//           items.map((item, index) =>
-//             <li
-//               className={this.state.activeItem === index ? 'active' : ''}
-//               onClick={() => this.onSelectItem(index)}
-//               key={`${item}_${index}`}>
-//               { item }
-//             </li>)
-//         }
-//       </ul>
-//     </div>
-//   )
-//   }
-// }
-
-function Categories({ items, onClick }) {
-  const [activeItem, setActiveItem] = React.useState(null)
-
-  const onSelectItem = index => {
-    setActiveItem(index)
-  }
+import PropTypes from 'prop-types'
 
 
+const Categories = React.memo(function Categories({ activeCategory, items, onClickCategory }) {
   return (
     <div className="categories">
       <ul>
         <li
-          className={activeItem === null ? 'active' : ''}
-          onClick={() => onSelectItem(null)}>
+          className={activeCategory === null ? 'active' : ''}
+          onClick={() => onClickCategory(null)}>
           Все
         </li>
-        { items &&
-          items.map((item, index) =>
-            <li
-              className={activeItem === index ? 'active' : ''}
-              onClick={() => onSelectItem(index)}
-              key={`${item}_${index}`}>
-              { item }
-            </li>)
+        { items && items.map((item, index) =>
+          <li
+            className={activeCategory === index ? 'active' : ''}
+            onClick={() => onClickCategory(index)}
+            key={`${item}_${index}`}>
+            { item }
+          </li>)
         }
       </ul>
     </div>
   )
+})
+
+Categories.propTypes = {
+  // activeCategory: PropTypes.oneOf([null, PropTypes.number]),
+  // items: PropTypes.oneOf([PropTypes.string, PropTypes.object]),
+  onClickCategory: PropTypes.func
 }
 
-
+Categories.defaultProps = {
+  activeCategory: null,
+  items: []
+}
 
 export default Categories

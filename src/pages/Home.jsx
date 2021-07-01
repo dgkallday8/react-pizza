@@ -28,18 +28,20 @@ function Home() {
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded)
   const { category, sortBy } = useSelector(({ filters }) => filters)
 
-  console.log(cartItems)
 
   React.useEffect(() => {
     dispatch(fetchPizzas(sortBy, category))
+    // eslint-disable-next-line
   }, [category, sortBy])
 
   const onSelectCategory = React.useCallback(index => {
     dispatch(setCategory(index))
+    // eslint-disable-next-line
   }, [])
 
   const onSelectSortType = React.useCallback(type => {
     dispatch(setSortBy(type))
+    // eslint-disable-next-line
   }, [])
 
   const handleAddPizzaToCart = obj => {
@@ -59,7 +61,7 @@ function Home() {
             ? items.map(obj => <PizzaBlock
               onClickAddPizza={handleAddPizzaToCart}
               key={obj.id}
-              addedCount={cartItems[obj.id] && cartItems[obj.id].length}
+              addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
               {...obj} />)
             : Array(10).fill(0).map((_, index) => <LoadingBlock key={index} />)
         }

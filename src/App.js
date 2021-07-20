@@ -3,18 +3,8 @@ import { Header } from './components/Header'
 import { Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
-// import { useDispatch } from 'react-redux'
-// import {fetchPizzas} from './redux/actions/pizzas'
-// import axios from 'axios'
-// import { setPizzas } from './redux/actions/pizzas'
-// import { connect } from 'react-redux'
-
 
 function App() {
-
-
-
-
 
 
   return (
